@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="keywords"
+      content="Inverse, Multiplication, Table, Worksheet, Math, Math Problems, Learning, Education"
+    />
+    <meta name="author" content="Matthew Schultz" />
+    <meta name="description" content="Free Web tutorials" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inverse Multiplication Table</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body,
+      div {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+      }
+
+      html {
+        font-family: Helvetica;
+        font-size: min(3vw, 3vh);
+      }
+
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      table {
+        text-align: center;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        width: min(6.25vw, 6.25vh);
+        height: min(6.25vw, 6.25vh);
+        border: 1px solid;
+      }
+
+      th {
+        border-width: 3px;
+        border-color: black;
+        color: transparent;
+      }
+
+      td {
+        border-width: 1px;
+        border-color: black;
+      }
+
+      thead > tr:first-child > th {
+        color: unset;
+      }
+
+      thead > tr:nth-child(2) > th:first-child {
+        color: unset;
+        font-size: 200%;
+        font-weight: 100;
+      }
+
+      .hidden {
+        color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="13">Inverse Multiplication Table</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script>
+      function shuffleArray(array) {
+        const copy = [...array];
+
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = temp;
+        }
+
+        return copy;
+      }
+
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+      const thead = document.getElementsByTagName("thead")[0];
+      const tbody = document.getElementsByTagName("tbody")[0];
+
+      const rows = shuffleArray(numbers);
+      const columns = shuffleArray(numbers);
+
+      const theadRow = document.createElement("tr");
+      const cornerCell = document.createElement("th");
+      cornerCell.innerHTML = "&#215;";
+      theadRow.appendChild(cornerCell);
+
+      for (const col of columns) {
+        const th = document.createElement("th");
+        th.innerHTML = col;
+        theadRow.appendChild(th);
+      }
+      thead.appendChild(theadRow);
+
+      for (const row of rows) {
+        const tbodyRow = document.createElement("tr");
+        const th = document.createElement("th");
+        th.innerText = row;
+        tbodyRow.appendChild(th);
+
+        for (const col of columns) {
+          const cell = document.createElement("td");
+          cell.innerText = row * col;
+          cell.className =
+            Math.floor(Math.random() * 2) === 1 ? "hidden" : "visible";
+          tbodyRow.appendChild(cell);
+        }
+        tbody.appendChild(tbodyRow);
+      }
+    </script>
+  </body>
+</html>
