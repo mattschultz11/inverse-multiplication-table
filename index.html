@@ -71,14 +71,20 @@
       .hidden {
         color: transparent;
       }
+
+      #qrcode > img {
+        width: 100%;
+      }
     </style>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   </head>
   <body>
     <div>
       <table>
         <thead>
           <tr>
-            <th colspan="13">Inverse Multiplication Table</th>
+            <th colspan="11">Inverse Multiplication Table</th>
+            <th colspan="2" id="qrcode"></th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -98,6 +104,11 @@
 
         return copy;
       }
+
+      new QRCode(
+        document.getElementById("qrcode"),
+        "https://mattschultz11.github.io/inverse-multiplication-table"
+      );
 
       const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
       const thead = document.getElementsByTagName("thead")[0];
